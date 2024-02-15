@@ -20,8 +20,10 @@ class Login_Window(QtWidgets.QMainWindow):
         #self.login_button.clicked.connect(self.take_login_pwd) # to get login_pwd when button is clicked
         #calling the login button to show module menu
         self.login_button.clicked.connect(self.call_menu_page)
-        #closing the login_page when button is lciked
-        self.login_button.clicked.connect(self.close)
+        
+        #closing the login_page when the logic is true
+        #self.login_button.clicked.connect(sel)
+        
 
         
         #@signup_button
@@ -69,6 +71,8 @@ class Login_Window(QtWidgets.QMainWindow):
             self.menu_page = Module_menu()
             #show the menu page
             self.menu_page.show()
+            #when the logic is true calling the inbuilt qtwidget close method by self.close()
+            self.close()
         else:
             print("input the abbove fields")
         
