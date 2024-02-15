@@ -20,6 +20,8 @@ class Login_Window(QtWidgets.QMainWindow):
         self.login_button.clicked.connect(self.take_login_pwd) # to get login_pwd when button is clicked
         #calling the login button to show module menu
         self.login_button.clicked.connect(self.call_menu_page)
+        #closing the login_page when button is lciked
+        self.login_button.clicked.connect(self.close)
 
         
         #@signup_button
@@ -58,9 +60,12 @@ class Login_Window(QtWidgets.QMainWindow):
         
     
     def call_menu_page(self):
-        uic.loadUi('menu.ui',self)
-        #calling the file then its class and then show method and then passig self so that the show function can called his attributes
-        menu_test.Module_menu.show(self)
+        from menu_test import Module_menu
+        #creating an  instance for Module_menu class and using self to call it inside this method
+        self.menu_page = Module_menu()
+        #show the menu page
+        self.menu_page.show()
+        
 
 
 
