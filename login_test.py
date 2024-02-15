@@ -16,8 +16,8 @@ class Login_Window(QtWidgets.QMainWindow):
         uic.loadUi('login.ui',self)#inbuilt uic method with attribute  so in string we want file name and then we call the uic method itself by self
        
        #@Login_button
-        self.login_button.clicked.connect(self.take_login_name)# to get login_name when button is clicked
-        self.login_button.clicked.connect(self.take_login_pwd) # to get login_pwd when button is clicked
+        self.login_button.clicked.connect(self.take_login_name_and_pwd)# to get login_name when button is clicked
+        #self.login_button.clicked.connect(self.take_login_pwd) # to get login_pwd when button is clicked
         #calling the login button to show module menu
         self.login_button.clicked.connect(self.call_menu_page)
         #closing the login_page when button is lciked
@@ -32,17 +32,20 @@ class Login_Window(QtWidgets.QMainWindow):
 
         
         
-    def take_login_name(self):
+    def take_login_name_and_pwd(self):
         # assigning a variable so we are calling the plaintextedit object with its actual name and then adding toPlainText() method
-        login_name = self.login_name_input.toPlainText()
-        print(login_name)
+        self.login_name = self.login_name_input.toPlainText()
+        self.login_pwd = self.login_pwd_input.toPlainText()
+        print(self.login_name)
+        print(self.login_pwd)
+        
         
         
         
     
-    def take_login_pwd(self):
+    """def take_login_pwd(self):
         login_pwd = self.login_pwd_input.toPlainText() 
-        print(login_pwd)
+        print(login_pwd)"""
     
     #trying a simple function to open signup page(@ it works)
     def call_signup_page(self):
@@ -59,12 +62,15 @@ class Login_Window(QtWidgets.QMainWindow):
 
         
     
-    def call_menu_page(self):
+    def call_menu_page(self,take_login_name_and_pwd):
         from menu_test import Module_menu
-        #creating an  instance for Module_menu class and using self to call it inside this method
-        self.menu_page = Module_menu()
-        #show the menu page
-        self.menu_page.show()
+        if self.login_name and self.login_pwd is not None:
+            #creating an  instance for Module_menu class and using self to call it inside this method
+            self.menu_page = Module_menu()
+            #show the menu page
+            self.menu_page.show()
+        else:
+            print("input the abbove fields")
         
 
 
