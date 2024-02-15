@@ -1,7 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets,uic
-import signup_test # to make signup_test file classes available
+#import signup_test # to make signup_test file classes available
+
 import menu_test #to make menu_test classes available
- 
+#adding extra sys module
+import sys
+
 
 
 
@@ -22,6 +25,8 @@ class Login_Window(QtWidgets.QMainWindow):
         #@signup_button
         #calling the signup button
         self.signup_link_button.clicked.connect(self.call_signup_page)#works
+        #mentioning close method in signup button to close login window by using pyqt inbuilt close methode
+        self.signup_link_button.clicked.connect(self.close)
 
         
         
@@ -39,10 +44,18 @@ class Login_Window(QtWidgets.QMainWindow):
     
     #trying a simple function to open signup page(@ it works)
     def call_signup_page(self):
-        #calling the inbuilt uic.loadui method with design file name
-        uic.loadUi('signup.ui',self)
-        #referencing the signup_test file with it's class and then show method with self
-        signup_test.SignupWindow.show(self)
+        from signup_test import SignupWindow
+        # Create an instance of the SignupWindow class
+        self.signup_window = SignupWindow()
+        # Show the SignupWindow
+        self.signup_window.show()
+        
+        
+
+        
+        
+
+        
     
     def call_menu_page(self):
         uic.loadUi('menu.ui',self)
@@ -70,9 +83,8 @@ class Login_Window(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
+    app = QtWidgets.QApplication(sys.argv)
     window = Login_Window()
-    
     window.show()
-    app.exec_()
+    sys.exit(app.exec_())
 

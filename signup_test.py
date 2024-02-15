@@ -1,12 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets,uic
 #import login files toget all it's classes
 import login_test
+import sys
 
 class SignupWindow(QtWidgets.QMainWindow):
     def __init__(self):
         #we are calling all the attributes from parent class
         super().__init__()
         uic.loadUi('signup.ui',self)#inbuilt uic method with attribute  so in string we want file name and then we call the uic method itself by self
+
+
 
         #implementing button
         self.signup_button.clicked.connect(self.get_signup_name)
@@ -15,6 +18,8 @@ class SignupWindow(QtWidgets.QMainWindow):
 
         #calling the go back to login button
         self.back_to_login_btn.clicked.connect(self.go_back_to_login) # it works
+        #to close the signup window when back to login is clickew with inbuilt pyqt close function
+        self.back_to_login_btn.clicked.connect(self.close)
         
 
         
@@ -40,18 +45,19 @@ class SignupWindow(QtWidgets.QMainWindow):
     
     #making a function to go backa to login page(@ successful)
     def go_back_to_login(self):
-        #using the prebuilt uic.loadui with login  design file name and then passing self
-        uic.loadUi("login.ui",self)
-        #referencing the signup_test file with its class and then calling the qt widgets by self
-        login_test.Login_Window.show(self)
-
+        from login_test import Login_Window
+        self.show_login = Login_Window()
+        self.show_login.show()
+    
+    
+        
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
+    app = QtWidgets.QApplication(sys.argv)
     window = SignupWindow()
     
     window.show()
-    app.exec_()
+    sys.exit(app.exec_())
     
    
