@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets,uic
 #import login files toget all it's classes
 import login_test
 import sys
+#importing pymongo for database connectivity
+import pymongo
 
 class SignupWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -15,6 +17,8 @@ class SignupWindow(QtWidgets.QMainWindow):
         self.signup_button.clicked.connect(self.get_signup_name)
         self.signup_button.clicked.connect(self.get_signup_email)
         self.signup_button.clicked.connect(self.get_signup_passwd)
+        #calling the signin method to add all values in collection
+        self.signup_button.clicked.connect(self.signin)
 
         #calling the go back to login button
         self.back_to_login_btn.clicked.connect(self.go_back_to_login) # it works
@@ -49,6 +53,27 @@ class SignupWindow(QtWidgets.QMainWindow):
         self.show_login = Login_Window()
         self.show_login.show()
     
+    #writing a method to fill signup details and creating new account
+    def signin(self):
+        #connecting with my client
+        self.myclient = pymongo.MongoClient("mongodb://localhost:27017")
+        #using my premade database auth_db 
+        self.mydb = self.myclient["auth_db"]
+        #using my premade collection
+        account_collection = self.mydb["accounts"]
+        #calling the pyqt input textboxes and filling it in to database
+        self.name = self.signup_name.toPlainText()
+        self.email = self.signup_email.toPlainText()
+        self.pwd = self.signup_passwd.toPlainText()
+
+        #making a dictionary to add all the credentials
+        signin_add = {"user_name":self.name,"user_email":self.email,"user_pwd":self.pwd}
+
+        #adding the values to my collection by using pymongo insert_one method
+        add_to_collection = account_collection.insert_one(signin_add)
+
+
+        
     
         
 
