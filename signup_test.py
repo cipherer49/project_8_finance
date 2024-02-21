@@ -9,9 +9,9 @@ class SignupWindow(QtWidgets.QMainWindow):
     def __init__(self):
         #we are calling all the attributes from parent class
         super().__init__()
-        uic.loadUi('signup.ui',self)#inbuilt uic method with attribute  so in string we want file name and then we call the uic method itself by self
+        uic.loadUi('signup_design.ui',self)#inbuilt uic method with attribute  so in string we want file name and then we call the uic method itself by self
 
-
+       
 
         #implementing button
         self.signup_button.clicked.connect(self.get_signup_name)
@@ -26,6 +26,10 @@ class SignupWindow(QtWidgets.QMainWindow):
         self.back_to_login_btn.clicked.connect(self.close)
         
 
+    #writing a (msaked function for my password and confirm password field
+    
+
+        
         
 
     def get_signup_name(self):
