@@ -261,6 +261,9 @@ color:rgb(0, 170, 255)</string>
      <string notr="true">font: 14pt &quot;Arial&quot;;
 background-color:white;</string>
     </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
    </widget>
    <widget class="QLineEdit" name="signup_reconfirm_passwd">
     <property name="geometry">
@@ -274,6 +277,9 @@ background-color:white;</string>
     <property name="styleSheet">
      <string notr="true">font: 14pt &quot;Arial&quot;;
 background-color:white;</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <zorder>label</zorder>

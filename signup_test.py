@@ -44,8 +44,9 @@ class SignupWindow(QtWidgets.QMainWindow):
     
     def get_signup_passwd(self):
         #same as above comment
-        signup_passwd = self.signup_passwd.toPlainText()
-        check_confirm_pwd = self.signup_reconfirm_passwd.toPlainText()
+        #we have use qline edit so to retrive text we will use text()
+        signup_passwd = self.signup_passwd.text()
+        check_confirm_pwd = self.signup_reconfirm_passwd.text()
         if signup_passwd == check_confirm_pwd:
             print(f"the password matches with confirmation return password is {signup_passwd}")
         else:
@@ -68,7 +69,7 @@ class SignupWindow(QtWidgets.QMainWindow):
         #calling the pyqt input textboxes and filling it in to database
         self.name = self.signup_name.toPlainText()
         self.email = self.signup_email.toPlainText()
-        self.pwd = self.signup_passwd.toPlainText()
+        self.pwd = self.signup_passwd.text()
 
         #making a dictionary to add all the credentials
         signin_add = {"user_name":self.name,"user_email":self.email,"user_pwd":self.pwd}
