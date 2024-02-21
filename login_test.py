@@ -71,19 +71,15 @@ class Login_Window(QtWidgets.QMainWindow):
 
         #defining a search query for collection
         self.search = get_account_for_login.find(check_dict)
-
-        self.lose = "not there"
+        self.lose =  print("not there")
+        
 
         #more imports for opening menupage and avoiding circular imports
         from menu_test import Module_menu
         for x in self.search:
             if False:
                 #we have to define what we want to print inside this method by using self
-                
                 login_go_to_menu.lose
-                
-                
-          
             if True:
                 
                 self.menu_page = Module_menu()
