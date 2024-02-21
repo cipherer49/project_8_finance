@@ -80,8 +80,7 @@ class Login_Window(QtWidgets.QMainWindow):
             if False:
                 #we have to define what we want to print inside this method by using self
                 login_go_to_menu.lose
-                self.display = Login_Window.display_auth_error
-                self.display
+                
             if True:
                 
                 self.menu_page = Module_menu()
