@@ -25,9 +25,14 @@ class Login_Window(QtWidgets.QMainWindow):
         #self.login_button.clicked.connect(self.take_login_pwd) # to get login_pwd when button is clicked
         #calling the login button to show module menu
         self.login_button.clicked.connect(self.login_go_to_menu)
+        #if menu doesn't pop the alert pops
+        self.login_button.clicked.connect(self.setting_alert)
         
-        #closing the login_page when the logic is true
-        #self.login_button.clicked.connect(sel)
+
+        #showing alert randomly
+        #first defining the alert message
+        self.alert_message = "Incorrect username or password"
+        
         
 
         
@@ -38,6 +43,9 @@ class Login_Window(QtWidgets.QMainWindow):
         self.signup_link_button.clicked.connect(self.close)
 
        
+       
+
+
         
         
     def take_login_name_and_pwd(self):
@@ -53,7 +61,7 @@ class Login_Window(QtWidgets.QMainWindow):
         
     # making a login_method  by onnecting to mongodb and then if credentials are true the menuscreen will pop
 
-    def login_go_to_menu(self):
+    def login_go_to_menu(self,setting_alert):
         #connecting with my client and then my db then collection
         self.myclient = pymongo.MongoClient("mongodb://localhost:27017/")
         #getting my db name is auth_db
@@ -73,13 +81,23 @@ class Login_Window(QtWidgets.QMainWindow):
         self.search = get_account_for_login.find(check_dict)
         self.lose =  print("not there")
         
+        
+        
+        
 
         #more imports for opening menupage and avoiding circular imports
         from menu_test import Module_menu
         for x in self.search:
             if False:
+                
                 #we have to define what we want to print inside this method by using self
                 login_go_to_menu.lose
+                
+                
+               
+                
+                
+
                 
             if True:
                 
@@ -99,9 +117,14 @@ class Login_Window(QtWidgets.QMainWindow):
         self.signup_window.show()
     
     
-
+   
        
-    
+    #deifining a alert function
+
+    def setting_alert(self):
+        #calling the object name of qlabel and simply stting as it as  message
+        self.auth_failed.setText(self.alert_message)
+
 
         
 
